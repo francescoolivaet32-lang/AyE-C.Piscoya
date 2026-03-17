@@ -1,0 +1,27 @@
+INT A1 = 12 + 8 * 3
+Console.WriteLine(A1);
+
+
+INT A2 = (12 + 8) * 3
+Console.WriteLine(A2);
+
+INT A3 = 50 / 5 ´+ 4
+Console.WriteLine(A3);
+
+INT A4 = 100 - 10 * 2
+Console.WriteLine(A4);
+
+INT A5 = 15\ % 2
+Console.WriteLine(A5);
+
+INT A6 = 20\ % 5
+Console.WriteLine(A6);
+
+INT A7 = 10 \ 2 * 4
+Console.WriteLine(A7);
+
+INT A8 = 25 / / 4
+Console.WriteLine(A8);
+
+INT A9=  5 + 5 * 10 - 2
+Console.WriteLine(A9);
