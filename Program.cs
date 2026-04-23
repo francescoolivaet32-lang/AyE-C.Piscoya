@@ -1,95 +1,76 @@
-﻿string Bloque1(int i)
+﻿string vocales = ("aeiouAEIOU");
+string TEXTO = Console.ReadLine();
+int cont;
+
+foreach (char t in TEXTO)
 {
+    foreach ( char v in vocales)
+    {
+        if (t == v)
+        {
+            cont = ++;
 
-    for (int i = 0; i <= 100; i = 3 + i)
+            break;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+string abc = ("ABCDEFGHIJKLMNÑOPQRSTUVQXYZ");
+string nuevotexto;
+string Funcion2 ( string texto)
+{
+    for(int i = 0; i < texto.Length; i++)
     {
 
-        Console.WriteLine(i);
-    }
+    for(int e = 0; e < abc.Length; e++)
+        {
+            if (texto[] == abc[])
 
 
-   
 
-    if (o > 0)
-    {
-        resultado = "Es positivo";
-        return resultado;
-    }
-    else if (n == 0)
-    {
-        resultado = "Es 0";
-        return resultado;
-    }
 
-    else
-    {
-        resultado = "es negativo";
-        return resultado;
+
+
+        }
+
+
+
+
+
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -99,3 +80,6 @@
 
 
 }
+
+
+
