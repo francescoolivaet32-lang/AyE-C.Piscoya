@@ -1,17 +1,17 @@
 ﻿Console.WriteLine("ingrese un numero para generar  la factorial");
 int aceite = Convert.ToInt32(Console.ReadLine());
 
-int xd = 1;
-for (int Thiago = 1; Thiago <= aceite; Thiago++)
+int dedo = 1;
+for (int pedo = 1; pedo <= aire; pedo++)
 {
-    xd = xd * Thiago;
+    dedo = dedo * pedo;
 
 
 }
-while (aceite < xd)
+while (aire < dedo)
 {
     Console.WriteLine("reintenta");
-    if (aceite < 0)
+    if (aire < 0)
     {
 
     }
@@ -21,4 +21,4 @@ while (aceite < xd)
     }
     aceite = Convert.ToInt32(Console.ReadLine());
 }
-Console.WriteLine("el factorial de tu numero es: " + xd);
+Console.WriteLine("el factorial de tu numero es: " + dedo);
