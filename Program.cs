@@ -1,108 +1,172 @@
-//ejercicio 1
-
-Console.WriteLine("Ingrese una frase");
-string frase = Console.ReadLine();
-string vocales = ("aeiouAEIOU");
-int contador = 0;
-
-foreach (char f in frase)
+﻿//1
+Console.WriteLine("Ejercicio 1");
+int[,] M =
 {
-    foreach (char v in vocales)
+    {1, 2, 3 },
+    {4, 5, 6 },
+    {7, 8, 9 }
+};
+for (int i = 0; i < 3; i++)
+{
+    for (int j = 0; j < 3; j++)
     {
-        if (f == v)
-        {
-            contador = contador + 1;
-            break;
-        }
-
+        Console.Write(M[i, j] + "-");
+    }
+    Console.WriteLine("");
+}
+//2
+Console.WriteLine("Ejercicio2");
+int[,] M2 =
+{
+    {10, 20, 30 },
+    {40, 50, 60 },
+    {70, 80, 90 }
+};
+int suma = 0;
+for (int i = 0; i < 3; i++)
+{
+    for (int j = 0; j < 3; j++)
+    {
+        suma += M2[i, j];
     }
 }
-Console.WriteLine("La cantidad de vocales que tiene es: " + contador);
 
+Console.WriteLine("Suma total: " + suma);
 
-//ejercicio 2
-Console.WriteLine("");
-Console.WriteLine("Ingrese una palabra , la invertiremos");
-String palabra = Console.ReadLine();
-String invertido = "";
-foreach (char l in palabra)
+//3
+Console.WriteLine("Ejercico3");
+int[,] M3 =
 {
-    invertido = l + invertido;
+{1, 2, 3, 4 },
+{5, 6, 7, 8 },
+{9, 10, 11, 12 },
+{13, 14, 15, 16 },
+};
+Console.Write("Filan (0-3): ");
+int fila =
+    int.Parse(Console.ReadLine());
+Console.Write("Columna (0=3)");
+int columna =
+int.Parse(Console.ReadLine());
+Console.WriteLine("Elementos: " + M3[fila, columna]);
+//4
+Console.WriteLine("Ejercicio4");
+int mayor = M3[0, 0];
+for (int i = 0; i < 4; i++)
+{
+    int sumaFila = 0;
+    for (int j = 0; j < 4; j++)
+    {
+        sumaFila += M3[i, j];
+    }
 }
-Console.WriteLine("");
-Console.WriteLine("La palabra invertida es: " + invertido);
+Console.WriteLine("Mayor: " + mayor);
 
-
-//ejercicio 3
-Console.WriteLine("");
-Console.WriteLine("Ingrese un numero");
-string texto = Console.ReadLine();
-int aux = 0;
-int aux2 = 0;
-
-foreach (char n in texto)
+//5
+Console.WriteLine("Ejercicio5");
+for (int i = 0; i < 4; i++)
 {
-    aux = Convert.ToInt32("" + n);
-    aux2 = aux + aux2;
+    int sumaFila = 0;
+    for (int j = 0; j < 4; j++)
+    {
+        sumaFila += M3[i, j];
+    }
+    Console.WriteLine(" Suma fila " + i + ": " + sumaFila);
+
 }
-Console.WriteLine("");
-Console.WriteLine("La suma es: " + aux2);
-
-
-//ejercicio 4
-Console.WriteLine("");
-Console.WriteLine("Ingrese un texto largo:");
-string frase3 = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese una frase prohibida");
-string fraseprohibida = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese una frase para reemplazarla");
-string frasereemplazo = Console.ReadLine();
-string nuevafrase = "";
-if (frase3.Contains(fraseprohibida) == true)
+for (int j = 0; j < 4; j++)
 {
-    nuevafrase = frase3.Replace(fraseprohibida, frasereemplazo);
+    int sumaColumna = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        sumaColumna += M3[i, j];
+    }
+    Console.WriteLine("suma columna " + j + ": " + sumaColumna);
 }
-Console.WriteLine("");
-Console.WriteLine("Esta es la frase: " + nuevafrase);
-
-
-
-//ejercicio 5
-Console.WriteLine("");
-Console.WriteLine("Ingrese su nombre");
-string nombre = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese su apellido");
-string apellido = Console.ReadLine();
-string iniciales = "";
-iniciales = nombre[0] + "." + apellido[0];
-Console.WriteLine("");
-Console.WriteLine("Su nombre es: " + nombre);
-Console.WriteLine("");
-Console.WriteLine("Su apellido es: " + apellido);
-Console.WriteLine("");
-Console.WriteLine("Sus iniciales son: " + iniciales);
-
-
-//ejercicio 6
-Console.WriteLine("");
-Console.WriteLine("Ingrese una palabra , identificaremos si es un palindromo:");
-String palindromo = Console.ReadLine();
-palindromo = palindromo.ToLower();
-String invertido2 = "";
-foreach (char j in palindromo)
+//6
+Console.WriteLine("Ejercicio6");
+int[,] transpuesta = new int[4, 4];
+for (int i = 0; i < 4; i++)
 {
-    invertido2 = j + invertido2;
+    for (int j = 0; j < 4; j++)
+    {
+        transpuesta[j, i] = M3[i, j];
+    }
 }
-if (palindromo == invertido2)
+Console.WriteLine("Matriz transpuesta");
+for (int i = 0; i < 4; i++)
 {
+    for (int j = 0; j < 4; j++)
+    {
+        Console.Write(transpuesta[i, j] + "-");
+
+    }
     Console.WriteLine("");
-    Console.WriteLine("La palabra '" + palindromo + "' es un palindromo");
 }
-else
+//7
+
+Console.WriteLine("Ejercicio7");
+int[,] M7 =
 {
-    Console.WriteLine("");
-    Console.WriteLine("La palabra '" + palindromo + "' NO es un palindromo");
+    {1, 2, 3, 4 },
+    {8, 5, 9, 2 },
+    {4, 5, 6, 7 }
+}; Console.Write("Nuero a buscar: ");
+int buscar = int.Parse(Console.ReadLine());
+int cantidad = 0;
+for (int i = 0; i < 4; i++)
+{
+    for (int j = 0; j < 4; j++)
+    {
+        if (M7[i, j] == buscar)
+        {
+            cantidad++;
+        }
+    }
 }
+Console.WriteLine("aparecer " + cantidad + "veces");
+//8
+Console.WriteLine("Ejercicio8");
+int[,] M8 =
+{
+    {5, 10, 15, 20 },
+    {25, 30, 35, 40 },
+    {45, 50, 55, 60 },
+    {65, 70, 75, 80 }
+};
+int total = 0;
+for (int i = 0; i < 4; i++)
+{
+    for (int j = 0; j < 4; j++)
+    {
+        total += M8[i, j];
+    }
+}
+double promedio = (double)total / 16;
+
+Console.WriteLine("Promedio: " + promedio);
+int[,] nueva = new int[4, 4];
+for (int i = 0; i < 4; i++)
+{
+    for (int j = 0; j < 4; j++)
+    {
+        if (M8[i, j] < promedio)
+        {
+            nueva[i, j] = (int)promedio;
+        }
+        else
+        {
+            nueva[i, j] = M8[i, j];
+        }
+    }
+}
+Console.WriteLine("nueva matriz: ");
+for (int i = 0; i < 4; i++)
+{
+    for (int j = 0; j < 4; j++)
+    {
+        Console.Write(nueva[i, j] + "-");
+    }
+    Console.WriteLine("");
+}
+
