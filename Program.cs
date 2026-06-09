@@ -1,108 +1,65 @@
-//ejercicio 1
-
-Console.WriteLine("Ingrese una frase");
-string frase = Console.ReadLine();
-string vocales = ("aeiouAEIOU");
-int contador = 0;
-
-foreach (char f in frase)
+﻿//Ejercicio1 
+Console.WriteLine("Ejercicio 1");
+Console.WriteLine(
+"fran; traverso; Manteca; auto; eqisde; ajajaja; mañana; falto; noseva; camion");
+string[] nombres = {
+"fran",
+"traverso",
+"Manteca",
+"auto",
+"eqisde",
+"ajajaja",
+" mañana",
+"falto",
+"noseva",
+" camion"
+};
+string palabraMasLarga =
+    nombres[0];
+for (int i = 0; i < nombres.Length; i++)
 {
-    foreach (char v in vocales)
+    if (nombres[i].Length > palabraMasLarga.Length)
     {
-        if (f == v)
-        {
-            contador = contador + 1;
-            break;
-        }
-
+        palabraMasLarga = nombres[i];
     }
 }
-Console.WriteLine("La cantidad de vocales que tiene es: " + contador);
+Console.WriteLine("La palabra mas larga es: " + palabraMasLarga);
 
 
-//ejercicio 2
-Console.WriteLine("");
-Console.WriteLine("Ingrese una palabra , la invertiremos");
-String palabra = Console.ReadLine();
-String invertido = "";
-foreach (char l in palabra)
+//2
+Console.WriteLine("Ejercicio 2");
+int cantidadVocales = 0;
+for (int i = 0; i < nombres.Length; i++)
 {
-    invertido = l + invertido;
+    string palabra = nombres[i].ToLower();
+    for (int j = 0; j < palabra.Length; j++)
+    {
+        char letra = palabra[j];
+        if (letra == 'a' || letra == 'e' || letra == 'i' || letra == 'o' || letra == 'u')
+        {
+            cantidadVocales++;
+        }
+    }
 }
-Console.WriteLine("");
-Console.WriteLine("La palabra invertida es: " + invertido);
+Console.WriteLine("La cantidad de vocales de las 10 palabras son: " + cantidadVocales);
 
+//3
 
-//ejercicio 3
-Console.WriteLine("");
-Console.WriteLine("Ingrese un numero");
-string texto = Console.ReadLine();
-int aux = 0;
-int aux2 = 0;
+Console.WriteLine("ejercicio 3");
 
-foreach (char n in texto)
+int[] numero = { 1, 2, 3, 4, 5, };
+int factor = 3;
+
+int[] nuevaLista = new
+    int[numero.Length];
+for (int i = 0; i < numero.Length; i++)
 {
-    aux = Convert.ToInt32("" + n);
-    aux2 = aux + aux2;
+    nuevaLista[i] = numero[i] * factor;
 }
-Console.WriteLine("");
-Console.WriteLine("La suma es: " + aux2);
+Console.WriteLine("nueva lista multiplicada");
 
-
-//ejercicio 4
-Console.WriteLine("");
-Console.WriteLine("Ingrese un texto largo:");
-string frase3 = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese una frase prohibida");
-string fraseprohibida = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese una frase para reemplazarla");
-string frasereemplazo = Console.ReadLine();
-string nuevafrase = "";
-if (frase3.Contains(fraseprohibida) == true)
+for (int i = 0; i < nuevaLista.Length; i++)
 {
-    nuevafrase = frase3.Replace(fraseprohibida, frasereemplazo);
+    Console.Write(nuevaLista[i] + "");
 }
-Console.WriteLine("");
-Console.WriteLine("Esta es la frase: " + nuevafrase);
-
-
-
-//ejercicio 5
-Console.WriteLine("");
-Console.WriteLine("Ingrese su nombre");
-string nombre = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese su apellido");
-string apellido = Console.ReadLine();
-string iniciales = "";
-iniciales = nombre[0] + "." + apellido[0];
-Console.WriteLine("");
-Console.WriteLine("Su nombre es: " + nombre);
-Console.WriteLine("");
-Console.WriteLine("Su apellido es: " + apellido);
-Console.WriteLine("");
-Console.WriteLine("Sus iniciales son: " + iniciales);
-
-
-//ejercicio 6
-Console.WriteLine("");
-Console.WriteLine("Ingrese una palabra , identificaremos si es un palindromo:");
-String palindromo = Console.ReadLine();
-palindromo = palindromo.ToLower();
-String invertido2 = "";
-foreach (char j in palindromo)
-{
-    invertido2 = j + invertido2;
-}
-if (palindromo == invertido2)
-{
-    Console.WriteLine("");
-    Console.WriteLine("La palabra '" + palindromo + "' es un palindromo");
-}
-else
-{
-    Console.WriteLine("");
-    Console.WriteLine("La palabra '" + palindromo + "' NO es un palindromo");
-}
+Console.ReadKey();
