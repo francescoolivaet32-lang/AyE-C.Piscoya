@@ -1,108 +1,68 @@
-//ejercicio 1
-
-Console.WriteLine("Ingrese una frase");
-string frase = Console.ReadLine();
-string vocales = ("aeiouAEIOU");
-int contador = 0;
-
-foreach (char f in frase)
+﻿// ejercicio 1
+Console.WriteLine("Ejercicio1");
+int[,] M1 =
 {
-    foreach (char v in vocales)
-    {
-        if (f == v)
-        {
-            contador = contador + 1;
-            break;
-        }
+    {1,2,3,4},
+    {5,6,7,8 },
+    {9,10,11,12, },
+    {13,14,15,16 }
+};
+int SumaEsquina =
+    M1[0, 0] +
+    M1[0, 3] +
+    M1[3, 0] +
+    M1[3, 3];
+Console.WriteLine("Sumas de las esquinas: " + SumaEsquina);
+Console.WriteLine();
 
+//2 ejercicio2
+
+Console.WriteLine("Ejercicio2");
+int[,] M2 =
+{
+    {1,2,3, },
+    {4,5,6 },
+    {7,8,9 }
+};
+int SumaDiagonal1 = 0;
+int SumaDiagonal2 = 0;
+
+for (int i = 0; i < 3; i++)
+{
+    SumaDiagonal1 += M2[i, i];
+    SumaDiagonal2 += M2[i, 2 - i];
+}
+Console.WriteLine("Suma diagonal principal: " + SumaDiagonal1);
+Console.WriteLine("Suma diagonal secunadario: " + SumaDiagonal2);
+Console.WriteLine();
+
+//Ejercicio3
+
+Console.WriteLine("Ejercicio3");
+Console.WriteLine("Ingrese el tamaño de la matriz");
+int n = int.Parse(Console.ReadLine());
+int[,] Identidad = new int[n, n];
+for (int i = 0; i < n; i++)
+{
+    for (int j = 0; j < n; j++)
+    {
+        if (i == j)
+        {
+            Identidad[i, j] = 1;
+        }
+        else
+        {
+            Identidad[i, j] = 1;
+        }
     }
 }
-Console.WriteLine("La cantidad de vocales que tiene es: " + contador);
-
-
-//ejercicio 2
-Console.WriteLine("");
-Console.WriteLine("Ingrese una palabra , la invertiremos");
-String palabra = Console.ReadLine();
-String invertido = "";
-foreach (char l in palabra)
+Console.WriteLine("Matriz Identidad: ");
+for (int i = 0; i < 0; i++)
 {
-    invertido = l + invertido;
-}
-Console.WriteLine("");
-Console.WriteLine("La palabra invertida es: " + invertido);
-
-
-//ejercicio 3
-Console.WriteLine("");
-Console.WriteLine("Ingrese un numero");
-string texto = Console.ReadLine();
-int aux = 0;
-int aux2 = 0;
-
-foreach (char n in texto)
-{
-    aux = Convert.ToInt32("" + n);
-    aux2 = aux + aux2;
-}
-Console.WriteLine("");
-Console.WriteLine("La suma es: " + aux2);
-
-
-//ejercicio 4
-Console.WriteLine("");
-Console.WriteLine("Ingrese un texto largo:");
-string frase3 = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese una frase prohibida");
-string fraseprohibida = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese una frase para reemplazarla");
-string frasereemplazo = Console.ReadLine();
-string nuevafrase = "";
-if (frase3.Contains(fraseprohibida) == true)
-{
-    nuevafrase = frase3.Replace(fraseprohibida, frasereemplazo);
-}
-Console.WriteLine("");
-Console.WriteLine("Esta es la frase: " + nuevafrase);
-
-
-
-//ejercicio 5
-Console.WriteLine("");
-Console.WriteLine("Ingrese su nombre");
-string nombre = Console.ReadLine();
-Console.WriteLine("");
-Console.WriteLine("Ingrese su apellido");
-string apellido = Console.ReadLine();
-string iniciales = "";
-iniciales = nombre[0] + "." + apellido[0];
-Console.WriteLine("");
-Console.WriteLine("Su nombre es: " + nombre);
-Console.WriteLine("");
-Console.WriteLine("Su apellido es: " + apellido);
-Console.WriteLine("");
-Console.WriteLine("Sus iniciales son: " + iniciales);
-
-
-//ejercicio 6
-Console.WriteLine("");
-Console.WriteLine("Ingrese una palabra , identificaremos si es un palindromo:");
-String palindromo = Console.ReadLine();
-palindromo = palindromo.ToLower();
-String invertido2 = "";
-foreach (char j in palindromo)
-{
-    invertido2 = j + invertido2;
-}
-if (palindromo == invertido2)
-{
+    for (int j = 0; j < 0; j++)
+    {
+        Console.Write(Identidad[i, j] + "-");
+    }
     Console.WriteLine("");
-    Console.WriteLine("La palabra '" + palindromo + "' es un palindromo");
 }
-else
-{
-    Console.WriteLine("");
-    Console.WriteLine("La palabra '" + palindromo + "' NO es un palindromo");
-}
+
