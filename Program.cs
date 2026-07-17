@@ -1,68 +1,150 @@
-﻿// ejercicio 1
-Console.WriteLine("Ejercicio1");
-int[,] M1 =
-{
-    {1,2,3,4},
-    {5,6,7,8 },
-    {9,10,11,12, },
-    {13,14,15,16 }
-};
-int SumaEsquina =
-    M1[0, 0] +
-    M1[0, 3] +
-    M1[3, 0] +
-    M1[3, 3];
-Console.WriteLine("Sumas de las esquinas: " + SumaEsquina);
-Console.WriteLine();
-
-//2 ejercicio2
-
-Console.WriteLine("Ejercicio2");
-int[,] M2 =
-{
-    {1,2,3, },
-    {4,5,6 },
-    {7,8,9 }
-};
-int SumaDiagonal1 = 0;
-int SumaDiagonal2 = 0;
-
+﻿string[,] tateti = new string[3, 3];
 for (int i = 0; i < 3; i++)
 {
-    SumaDiagonal1 += M2[i, i];
-    SumaDiagonal2 += M2[i, 2 - i];
-}
-Console.WriteLine("Suma diagonal principal: " + SumaDiagonal1);
-Console.WriteLine("Suma diagonal secunadario: " + SumaDiagonal2);
-Console.WriteLine();
-
-//Ejercicio3
-
-Console.WriteLine("Ejercicio3");
-Console.WriteLine("Ingrese el tamaño de la matriz");
-int n = int.Parse(Console.ReadLine());
-int[,] Identidad = new int[n, n];
-for (int i = 0; i < n; i++)
-{
-    for (int j = 0; j < n; j++)
+    for (int x = 0; x < 3; x++)
     {
-        if (i == j)
+        tateti[i, x] = "-";
+        Console.Write(tateti[i, x]);
+    }
+    Console.WriteLine();
+}
+void turnodelprimero()
+{
+    Console.WriteLine("Elija la fila");
+    int fila = int.Parse(Console.ReadLine());
+    Console.WriteLine("Elija la columna");
+    int columna = int.Parse(Console.ReadLine());
+    for (int i = 0; i < 3; i++)
+    {
+        for (int x = 0; x < 3; x++)
         {
-            Identidad[i, j] = 1;
+            if (tateti[fila, columna] == "X")
+            {
+                Console.WriteLine("Casilla ya ocupada, vuelva a intentar");
+                turnodelprimero();
+            }
+            tateti[fila, columna] = "O";
+
+            Console.Write(tateti[i, x]);
         }
-        else
+        Console.WriteLine();
+    }
+
+
+
+}
+turnodelprimero();
+
+void turnodelsegundo()
+{
+    Console.WriteLine("Elija la fila");
+    int fila = int.Parse(Console.ReadLine());
+    Console.WriteLine("Elija la columna");
+    int columna = int.Parse(Console.ReadLine());
+    for (int i = 0; i < 3; i++)
+    {
+        for (int x = 0; x < 3; x++)
         {
-            Identidad[i, j] = 1;
+            if (tateti[fila, columna] == "O")
+            {
+                Console.WriteLine("Casilla ya ocupada, vuelva a intentar");
+                turnodelsegundo();
+            }
+            tateti[fila, columna] = "X";
+
+            Console.Write(tateti[i, x]);
+        }
+        Console.WriteLine();
+    }
+
+
+
+}
+turnodelsegundo();
+
+bool verificar_ganador()
+{
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (tateti[i, 0] == "X" && tateti[i, 1] == "X" && tateti[i, 2] == "X")
+        {
+            return true;
+
+        }
+
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        if (tateti[i, 0] == "O" && tateti[i, 1] == "O" && tateti[i, 2] == "O")
+        {
+
+            return true;
+
+
+        }
+
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        if (tateti[0, i] == "O" && tateti[1, i] == "O" && tateti[2, i] == "O")
+        {
+
+            return true;
+
+
+        }
+
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        if (tateti[0, i] == "X" && tateti[1, i] == "X" && tateti[2, i] == "X")
+        {
+
+            return true;
+
+
+        }
+
+    }
+    if (tateti[0, 0] == "X" && tateti[1, 1] == "X" && tateti[2, 2] == "X")
+    {
+        return true;
+    }
+    if (tateti[0, 0] == "O" && tateti[1, 1] == "O" && tateti[2, 2] == "O")
+    {
+        return true;
+    }
+    if (tateti[0, 2] == "X" && tateti[1, 1] == "X" && tateti[2, 0] == "X")
+    {
+        return true;
+    }
+    if (tateti[0, 2] == "O" && tateti[1, 1] == "O" && tateti[2, 0] == "O")
+    {
+        return true;
+    }
+    return false;
+}
+void ishdoasid()
+{
+    bool sigue = true;
+    while (sigue)
+    {
+        turnodelprimero();
+        if (verificar_ganador() == true)
+        {
+            sigue = false;
+            Console.WriteLine("Felicidades jugador O, usted ha ganado");
+            break;
+        }
+        turnodelsegundo();
+
+        if (verificar_ganador() == true)
+        {
+            sigue = false;
+            Console.WriteLine("Felicidades jugador X, usted ha ganado");
+            break;
         }
     }
 }
-Console.WriteLine("Matriz Identidad: ");
-for (int i = 0; i < 0; i++)
-{
-    for (int j = 0; j < 0; j++)
-    {
-        Console.Write(Identidad[i, j] + "-");
-    }
-    Console.WriteLine("");
-}
-
+ishdoasid();
