@@ -1,68 +1,154 @@
-﻿// ejercicio 1
-Console.WriteLine("Ejercicio1");
-int[,] M1 =
+﻿bool ejercicio1(int n)
 {
-    {1,2,3,4},
-    {5,6,7,8 },
-    {9,10,11,12, },
-    {13,14,15,16 }
-};
-int SumaEsquina =
-    M1[0, 0] +
-    M1[0, 3] +
-    M1[3, 0] +
-    M1[3, 3];
-Console.WriteLine("Sumas de las esquinas: " + SumaEsquina);
-Console.WriteLine();
 
-//2 ejercicio2
-
-Console.WriteLine("Ejercicio2");
-int[,] M2 =
-{
-    {1,2,3, },
-    {4,5,6 },
-    {7,8,9 }
-};
-int SumaDiagonal1 = 0;
-int SumaDiagonal2 = 0;
-
-for (int i = 0; i < 3; i++)
-{
-    SumaDiagonal1 += M2[i, i];
-    SumaDiagonal2 += M2[i, 2 - i];
-}
-Console.WriteLine("Suma diagonal principal: " + SumaDiagonal1);
-Console.WriteLine("Suma diagonal secunadario: " + SumaDiagonal2);
-Console.WriteLine();
-
-//Ejercicio3
-
-Console.WriteLine("Ejercicio3");
-Console.WriteLine("Ingrese el tamaño de la matriz");
-int n = int.Parse(Console.ReadLine());
-int[,] Identidad = new int[n, n];
-for (int i = 0; i < n; i++)
-{
-    for (int j = 0; j < n; j++)
+    if (n == 0)
     {
-        if (i == j)
-        {
-            Identidad[i, j] = 1;
-        }
-        else
-        {
-            Identidad[i, j] = 1;
-        }
+
+        return false;
+    }
+    else
+    {
+        ejercicio1(n - 1);
+        Console.WriteLine(n);
+        return true;
+    }
+
+}
+ejercicio1(10);
+
+bool ejercicio2(int n)
+{
+
+    if (n == 0)
+    {
+
+        return false;
+    }
+    else
+    {
+
+        Console.WriteLine("¡Hola mundo!");
+        ejercicio2(n - 1);
+        return true;
     }
 }
-Console.WriteLine("Matriz Identidad: ");
-for (int i = 0; i < 0; i++)
+ejercicio2(5);
+bool ejercicio3(int n)
 {
-    for (int j = 0; j < 0; j++)
+    if (n > 20)
     {
-        Console.Write(Identidad[i, j] + "-");
+        return false;
     }
-    Console.WriteLine("");
+    else
+    {
+
+        Console.WriteLine(n);
+        ejercicio3(n + 2);
+        return true;
+    }
+}
+ejercicio3(2);
+bool ejercicio4(int n)
+{
+    if (n > 70)
+    {
+        return false;
+    }
+    else
+    {
+        Console.WriteLine(n);
+        ejercicio4(n + 7);
+        return true;
+    }
+}
+ejercicio4(7);
+int aux = 0;
+int ejercicio5(int n)
+{
+    if (n == 0)
+    {
+        return aux;
+    }
+    else
+    {
+        aux = aux + n;
+        ejercicio5(n - 1);
+        return aux;
+    }
 }
 
+aux = ejercicio6(Convert.ToInt32(Console.ReadLine()));
+Console.WriteLine(aux);
+string ejercicio6(string contra)
+{
+    string secreta = "caine";
+
+    if(secreta == contra)
+    {
+        Console.WriteLine("La contraseña es correcta");
+        return contra;
+    }
+    else
+    {
+        Console.WriteLine("Intentelo de nuevo");
+        ejercicio6(Console.ReadLine());
+        return contra;
+
+    }
+}
+ejercicio6(Console.ReadLine());
+
+int ejercicio7(int despegar)
+{
+    if (despegar == 0)
+    {
+        Console.WriteLine("Listos para despegar");
+        Console.WriteLine("Despegue");
+        return despegar;
+    }
+    else
+    {
+        despegar = despegar - 1;
+        Console.WriteLine(despegar);
+        ejercicio7(despegar);
+        return despegar;
+    }
+}
+ejercicio7(6);
+int ejercicio8(int maquina)
+{
+    Console.WriteLine("Adivine el numero");
+    int numero = Convert.ToInt32(Console.ReadLine());
+    if (numero == maquina)
+    {
+        Console.WriteLine("¡Felicidades! Adivinaste el número.");
+        return maquina;
+    }
+    else
+    {
+        Console.WriteLine("intentelo de vuelta");
+        ejercicio8(maquina);
+        return maquina;
+    }
+}
+ejercicio8(7);
+int acum = 0;
+int ejercicio9()
+{
+    Console.WriteLine("Ingrese un numero");
+    int num = Convert.ToInt32(Console.ReadLine());
+    if(num == 0)
+    {
+        Console.WriteLine("La suma de los numeros es: " + acum);
+        return acum;
+    }
+    else
+    {
+        acum = acum + num;
+        Console.WriteLine("Ingrese otro numero");
+        ejercicio9();
+    }
+    return acum;
+
+}
+ejercicio9();
