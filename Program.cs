@@ -1,68 +1,136 @@
-﻿// ejercicio 1
-Console.WriteLine("Ejercicio1");
-int[,] M1 =
+﻿try
 {
-    {1,2,3,4},
-    {5,6,7,8 },
-    {9,10,11,12, },
-    {13,14,15,16 }
-};
-int SumaEsquina =
-    M1[0, 0] +
-    M1[0, 3] +
-    M1[3, 0] +
-    M1[3, 3];
-Console.WriteLine("Sumas de las esquinas: " + SumaEsquina);
-Console.WriteLine();
-
-//2 ejercicio2
-
-Console.WriteLine("Ejercicio2");
-int[,] M2 =
-{
-    {1,2,3, },
-    {4,5,6 },
-    {7,8,9 }
-};
-int SumaDiagonal1 = 0;
-int SumaDiagonal2 = 0;
-
-for (int i = 0; i < 3; i++)
-{
-    SumaDiagonal1 += M2[i, i];
-    SumaDiagonal2 += M2[i, 2 - i];
-}
-Console.WriteLine("Suma diagonal principal: " + SumaDiagonal1);
-Console.WriteLine("Suma diagonal secunadario: " + SumaDiagonal2);
-Console.WriteLine();
-
-//Ejercicio3
-
-Console.WriteLine("Ejercicio3");
-Console.WriteLine("Ingrese el tamaño de la matriz");
-int n = int.Parse(Console.ReadLine());
-int[,] Identidad = new int[n, n];
-for (int i = 0; i < n; i++)
-{
-    for (int j = 0; j < n; j++)
+    void programa6()
     {
-        if (i == j)
+        string[,] matrizVisual = new string[10, 10];
+        for (int fila = 0; fila < matrizVisual.GetLength(0); fila++)
         {
-            Identidad[i, j] = 1;
+            for (int columna = 0; columna < matrizVisual.GetLength(1); columna++)
+            {
+                matrizVisual[fila, columna] = "?" + " ";
+            }
         }
-        else
+
+        int[,] matriz1 = new int[10, 10];
+
+        int unos = 0;
+
+        int intentos = 50
+   ;
+
+        bool adivinar = true;
+
+        int adivinados = 0;
+
+        int ultimaX = -1;
+        int ultimaY = -1;
+
+        Random num = new Random();
+
+        while (unos < 3)
         {
-            Identidad[i, j] = 1;
+            int fila = num.Next(0, 10);
+            int columna = num.Next(0, 10);
+
+            if (matriz1[fila, columna] == 0)
+            {
+                matriz1[fila, columna] = 1;
+                unos++;
+            }
+        }
+
+        for (int fila = 0; fila < matriz1.GetLength(0); fila++)
+        {
+            for (int columna = 0; columna < matriz1.GetLength(1); columna++)
+            {
+                Console.Write("?" + " ");
+            }
+            Console.WriteLine();
+        }
+
+        while (adivinar == true)
+        {
+            Console.WriteLine("Elija la casilla en la cordenada x del 1 al 10");
+            int corx = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            Console.WriteLine("Elija la casilla en la cordenada y del 1 al 10(ya ingreso la cordenada en x)");
+            int cory = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            ultimaX = corx;
+            ultimaY = cory;
+
+            if (matriz1[corx, cory] == 1)
+            {
+                Console.WriteLine("Usted acerto");
+                adivinados++;
+
+                matrizVisual[corx, cory] = "O";
+
+                for (int fila = 0; fila < matrizVisual.GetLength(0); fila++)
+                {
+                    for (int columna = 0; columna < matrizVisual.GetLength(1); columna++)
+                    {
+                        Console.Write(matrizVisual[fila, columna] + " ");
+                    }
+                    Console.WriteLine();
+                }
+
+                if (adivinados == 3)
+                {
+                    Console.WriteLine("Usted gano el juego Acerto Todas las posiciones, la matriz usada fue: ");
+
+                    for (int fila = 0; fila < matriz1.GetLength(0); fila++)
+                    {
+                        for (int columna = 0; columna < matriz1.GetLength(1); columna++)
+                        {
+                            Console.WriteLine(matriz1[fila, columna] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    adivinar = false;
+                    break;
+                }
+            }
+            else
+            {
+                intentos--;
+                Console.WriteLine($"Usted no acerto tiene {intentos} intentos");
+
+                matrizVisual[corx, cory] = "X";
+
+                for (int fila = 0; fila < matrizVisual.GetLength(0); fila++)
+                {
+                    for (int columna = 0; columna < matrizVisual.GetLength(1); columna++)
+                    {
+                        Console.Write(matrizVisual[fila, columna] + " ");
+                    }
+                    Console.WriteLine();
+                }
+                if (intentos == 0)
+                {
+                    Console.WriteLine("Perdio, las casillas eran: ");
+
+                    for (int fila = 0; fila < matriz1.GetLength(0); fila++)
+                    {
+                        for (int columna = 0; columna < matriz1.GetLength(1); columna++)
+                        {
+                            Console.Write(matriz1[fila, columna] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    adivinar = false;
+                    break;
+                }
+            }
         }
     }
+    programa6();
 }
-Console.WriteLine("Matriz Identidad: ");
-for (int i = 0; i < 0; i++)
+catch (System.FormatException)
 {
-    for (int j = 0; j < 0; j++)
-    {
-        Console.Write(Identidad[i, j] + "-");
-    }
-    Console.WriteLine("");
+    Console.WriteLine("No puede");
 }
-
+catch (IndexOutOfRangeException)
+{
+    Console.WriteLine("No puede");
+}
