@@ -1,154 +1,160 @@
-﻿bool ejercicio1(int n)
+﻿namespace ConsoleApp1
 {
-
-    if (n == 0)
+    internal class Program
     {
+        static void Main(string[] args)
+        {
 
-        return false;
-    }
-    else
-    {
-        ejercicio1(n - 1);
-        Console.WriteLine(n);
-        return true;
-    }
 
+            string[] pokemon = ["Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard", "Squirtle", "Wartortle", "Blastoise", "Caterpie", "Metapod", "Butterfree", "Weedle", "Kakuna", "Beedrill", "Pidgey", "Pidgeotto", "Pidgeot", "Rattata", "Raticate", "Spearow", "Fearow", "Ekans", "Arbok", "Pikachu", "Raichu", "Sandshrew", "Sandslash", "Nidoran♀", "Nidorina", "Nidoqueen", "Nidoran♂", "Nidorino", "Nidoking", "Clefairy", "Clefable", "Vulpix", "Ninetales", "Jigglypuff", "Wigglytuff", "Zubat", "Golbat", "Oddish", "Gloom", "Vileplume", "Paras", "Parasect", "Venonat", "Venomoth", "Diglett", "Dugtrio", "Meowth", "Persian", "Psyduck", "Golduck", "Mankey", "Primeape", "Growlithe", "Arcanine", "Poliwag", "Poliwhirl", "Poliwrath", "Abra", "Kadabra", "Alakazam", "Machop", "Machoke", "Machamp", "Bellsprout", "Weepinbell", "Victreebel", "Tentacool", "Tentacruel", "Geodude", "Graveler", "Golem", "Ponyta", "Rapidash", "Slowpoke", "Slowbro", "Magnemite", "Magneton", "Farfetch'd", "Doduo", "Dodrio", "Seel", "Dewgong", "Grimer", "Muk", "Shellder", "Cloyster", "Gastly", "Haunter", "Gengar", "Onix", "Drowzee", "Hypno", "Krabby", "Kingler", "Voltorb", "Electrode", "Exeggcute", "Exeggutor", "Cubone", "Marowak", "Hitmonlee", "Hitmonchan", "Lickitung", "Koffing", "Weezing", "Rhyhorn", "Rhydon", "Chansey", "Tangela", "Kangaskhan", "Horsea", "Seadra", "Goldeen", "Seaking", "Staryu", "Starmie", "Mr. Mime", "Scyther", "Jynx", "Electabuzz", "Magmar", "Pinsir", "Tauros", "Magikarp", "Gyarados", "Lapras", "Ditto", "Eevee", "Vaporeon", "Jolteon", "Flareon", "Porygon", "Omanyte", "Omastar", "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite", "Mewtwo", "Mew"];
+            string[] tipo = { "Grass", "Grass", "Grass", "Fire", "Fire", "Fire", "Water", "Water", "Water", "Bug", "Bug", "Bug", "Bug", "Bug", "Bug", "Normal", "Normal", "Normal", "Normal", "Normal", "Normal", "Normal", "Poison", "Poison", "Electric", "Electric", "Ground", "Ground", "Poison", "Poison", "Poison", "Poison", "Poison", "Poison", "Fairy", "Fairy", "Fire", "Fire", "Normal", "Normal", "Poison", "Poison", "Grass", "Grass", "Grass", "Bug", "Bug", "Bug", "Bug", "Ground", "Ground", "Normal", "Normal", "Water", "Water", "Fighting", "Fighting", "Fire", "Fire", "Water", "Water", "Water", "Psychic", "Psychic", "Psychic", "Fighting", "Fighting", "Fighting", "Grass", "Grass", "Grass", "Water", "Water", "Rock", "Rock", "Rock", "Fire", "Fire", "Water", "Water", "Electric", "Electric", "Normal", "Normal", "Normal", "Water", "Water", "Poison", "Poison", "Water", "Water", "Ghost", "Ghost", "Ghost", "Rock", "Psychic", "Psychic", "Water", "Water", "Electric", "Electric", "Grass", "Grass", "Ground", "Ground", "Fighting", "Fighting", "Normal", "Poison", "Poison", "Ground", "Ground", "Normal", "Grass", "Normal", "Water", "Water", "Water", "Water", "Water", "Water", "Psychic", "Bug", "Ice", "Electric", "Fire", "Bug", "Normal", "Water", "Water", "Water", "Normal", "Normal", "Water", "Electric", "Fire", "Normal", "Rock", "Rock", "Rock", "Rock", "Rock", "Normal", "Ice", "Electric", "Fire", "Dragon", "Dragon", "Dragon", "Psychic", "Psychic" };
+            string[][] blue = new string[7][];
+            string[][] red = new string[7][];
+            string[][] yellow = new string[7][];
+            string[][] green = new string[7][];
+            blue[0] = new string[1] { "blue" };
+            red[0] = new string[1] { "red" };
+            yellow[0] = new string[1] { "yellow" };
+            green[0] = new string[1] { "green" };
+
+            for (int x = 0; x < blue.Length; x++)
+            {
+                blue[x] = new string[3];
+                red[x] = new string[3];
+                yellow[x] = new string[3];
+                green[x] = new string[3];
+            }
+
+
+
+
+
+            blue = llenarequipo(blue);
+            green = llenarequipo(green);
+            red = llenarequipo(red);
+            yellow = llenarequipo(yellow);
+
+
+
+
+
+
+            bool ganador1, ganador2, ganadorfinal;
+            ganador1 = determinarganador(red, green);
+            ganador2 = determinarganador(yellow, blue);
+            if (ganador1 == true && ganador2 == true)
+            {
+                ganadorfinal = determinarganador(red, yellow);
+            }
+            else if (ganador1 == true && ganador2 == false)
+            {
+                ganadorfinal = determinarganador(red, blue);
+            }
+            else if (ganador1 == false && ganador2 == true)
+            {
+                ganadorfinal = determinarganador(green, yellow);
+            }
+            else
+            {
+                ganadorfinal = determinarganador(green, blue);
+            }
+
+
+            string final1 = nombre(ganador1, red[0][0], green[0][0]);
+            string final2 = nombre(ganador2, yellow[0][0], blue[0][0]);
+            Console.WriteLine("pelea 1 el ganador es: " + final1);
+            Console.WriteLine("pelea 2 el ganador es: " + final2);
+
+            string mostrarganador = nombre(ganadorfinal, final1, final2);
+            Console.WriteLine("el ganador del torneo es" + mostrarganador);
+            switch (mostrarganador)
+            {
+                case "red":
+                    mostrar(red);
+                    break;
+                case "green":
+                    mostrar(green);
+                    break;
+                case "yellow":
+                    mostrar(yellow);
+                    break;
+                case "blue":
+                    mostrar(blue);
+                    break;
+            }
+
+            bool determinarganador(string[][] equipo1, string[][] equipo2)
+            {
+                int nivel1 = 0;
+                int nivel2 = 0;
+                for (int x = 1; x < equipo1[1].Length; x++)
+                {
+                    nivel1 += Convert.ToInt32(equipo1[x][2]);
+                    nivel2 += Convert.ToInt32(equipo2[x][2]);
+                }
+
+                if (nivel1 > nivel2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+
+            string[][] llenarequipo(string[][] equipo)
+            {
+                Random aleatorio = new Random();
+
+                for (int x = 1; x < equipo.Length; x++)
+                {
+                    int eleccion = aleatorio.Next(0, 151);
+                    int nivel = aleatorio.Next(50, 81);
+                    for (int y = 0; y < equipo[x].Length; y++)
+                    {
+                        switch (y)
+                        {
+                            case 0:
+                                equipo[x][y] = pokemon[eleccion];
+                                break;
+                            case 1:
+                                equipo[x][y] = tipo[eleccion];
+                                break;
+                            case 2:
+                                equipo[x][y] = nivel.ToString();
+                                break;
+                        }
+
+                    }
+                }
+                return equipo;
+            }
+
+            string nombre(bool ganador, string nombre1, string nombre2)
+            {
+                if (ganador)
+                {
+                    return nombre1;
+                }
+                else
+                {
+                    return nombre2;
+                }
+            }
+
+            void mostrar(string[][] equipo)
+            {
+                for (int x = 0; x < equipo.GetLength(0); x++)
+                {
+                    for (int y = 0; y < equipo[x].Length; y++)
+                    {
+                        Console.Write(equipo[x][y] + " ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+        }
+    }
 }
-ejercicio1(10);
-
-bool ejercicio2(int n)
-{
-
-    if (n == 0)
-    {
-
-        return false;
-    }
-    else
-    {
-
-        Console.WriteLine("¡Hola mundo!");
-        ejercicio2(n - 1);
-        return true;
-    }
-}
-ejercicio2(5);
-bool ejercicio3(int n)
-{
-    if (n > 20)
-    {
-        return false;
-    }
-    else
-    {
-
-        Console.WriteLine(n);
-        ejercicio3(n + 2);
-        return true;
-    }
-}
-ejercicio3(2);
-bool ejercicio4(int n)
-{
-    if (n > 70)
-    {
-        return false;
-    }
-    else
-    {
-        Console.WriteLine(n);
-        ejercicio4(n + 7);
-        return true;
-    }
-}
-ejercicio4(7);
-int aux = 0;
-int ejercicio5(int n)
-{
-    if (n == 0)
-    {
-        return aux;
-    }
-    else
-    {
-        aux = aux + n;
-        ejercicio5(n - 1);
-        return aux;
-    }
-}
-
-aux = ejercicio6(Convert.ToInt32(Console.ReadLine()));
-Console.WriteLine(aux);
-string ejercicio6(string contra)
-{
-    string secreta = "caine";
-
-    if(secreta == contra)
-    {
-        Console.WriteLine("La contraseña es correcta");
-        return contra;
-    }
-    else
-    {
-        Console.WriteLine("Intentelo de nuevo");
-        ejercicio6(Console.ReadLine());
-        return contra;
-
-    }
-}
-ejercicio6(Console.ReadLine());
-
-int ejercicio7(int despegar)
-{
-    if (despegar == 0)
-    {
-        Console.WriteLine("Listos para despegar");
-        Console.WriteLine("Despegue");
-        return despegar;
-    }
-    else
-    {
-        despegar = despegar - 1;
-        Console.WriteLine(despegar);
-        ejercicio7(despegar);
-        return despegar;
-    }
-}
-ejercicio7(6);
-int ejercicio8(int maquina)
-{
-    Console.WriteLine("Adivine el numero");
-    int numero = Convert.ToInt32(Console.ReadLine());
-    if (numero == maquina)
-    {
-        Console.WriteLine("¡Felicidades! Adivinaste el número.");
-        return maquina;
-    }
-    else
-    {
-        Console.WriteLine("intentelo de vuelta");
-        ejercicio8(maquina);
-        return maquina;
-    }
-}
-ejercicio8(7);
-int acum = 0;
-int ejercicio9()
-{
-    Console.WriteLine("Ingrese un numero");
-    int num = Convert.ToInt32(Console.ReadLine());
-    if(num == 0)
-    {
-        Console.WriteLine("La suma de los numeros es: " + acum);
-        return acum;
-    }
-    else
-    {
-        acum = acum + num;
-        Console.WriteLine("Ingrese otro numero");
-        ejercicio9();
-    }
-    return acum;
-
-}
-ejercicio9();
