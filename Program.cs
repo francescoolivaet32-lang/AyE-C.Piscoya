@@ -1,141 +1,75 @@
-﻿using System.ComponentModel.Design;
-using System.Runtime.ConstrainedExecution;
-using System;
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
-    public struct Personaje
+    public struct Jugador
     {
         public String Nombre { get; set; }
-        public int Poder { get; set; }
+        public String Apellido { get; set; }
 
-        public String[] Items { get; set; }
+        public int Cant_goles { get; set;}
 
-        public Personaje(string nombre, int poder)
+        public int Cant_disparos_arco { get; set; }
+
+        public int Numero_camiseta { get; set; }
+
+        public string Posicion { get; set; }
+
+        public string[] Equipo { get; set; }
+
+        public Jugador(string nombre, string apellido, int cant_goles, int cant_disparos_arco, int numero_camiseta, string posicion)
         {
             Nombre = nombre;
-            Poder = poder;
-            Items = new string[20];
-        }
-    }
-
-    public struct Salas
-    {
-        public int Dificultad { get; set; }
-        public string Item { get; set; }
-
-        public int Poderitem { get; set; }
-
-        public Salas(int dificultad, string item, int poderitem)
-        {
-            Dificultad = dificultad;
-            Item = item;
-            Poderitem = poderitem;
+            Apellido = apellido;
+            Cant_goles = cant_goles;
+            Cant_disparos_arco = cant_disparos_arco;
+            Numero_camiseta = numero_camiseta;
+            Posicion = posicion;
+            Equipo = new string[10];
         }
     }
     internal class Program
     {
+        int indice_ataque = 0;
+        double max_indice = 0;
         static void Main(string[] args)
         {
-            string[] objetos = { "Espada de Hierro", "Armadura de Cuero", "Poción de Vida", "Amuleto Mágico", "Escudo Pesado", "Botas de Velocidad", "Casco de Bronce", "Báculo Sagrado", "Anillo de Poder", "Daga Envenenada", "Manto de Invisibilidad", "Poción de Fuerza", "Hacha de Batalla", "Guanteletes de Hierro", "Talismán de la Suerte", "Arco Largo", "Poción de Maná", "Capa del Errante", "Lanza de Plata", "Cinturón de Gigante", "Grimorio Oscuro", "Escudo de Madera" };
-            Random aleatorio = new Random();
-            Personaje marcos = new Personaje("Guerrero", 50);
-            Personaje pedro = new Personaje("Magordito", 60);
+            Jugador[] equipo = new Jugador[10];
+            equipo[0] = new Jugador("Kylian", "Mbappé", 8, 33, 10, "Delantero");
+            equipo[1] = new Jugador("Lionel", "Messi", 8, 34, 10, "Delantero");
+            equipo[2] = new Jugador("Erling", "Haaland", 7, 20, 9, "Delantero");
+            equipo[3] = new Jugador("Jude", "Bellingham", 6, 17, 10, "Mediocampista");
+            equipo[4] = new Jugador("Harry", "Kane", 6, 19, 9, "Delantero");
+            equipo[5] = new Jugador("Mikel", "Oyarzabal", 5, 14, 7, "Delantero");
+            equipo[6] = new Jugador("Ousmane", "Dembélé", 5, 18, 11, "Delantero");
+            equipo[7] = new Jugador("Vinícius", "Júnior", 4, 15, 7, "Delantero");
+            equipo[8] = new Jugador("Julián", "Quiñones", 4, 14, 33, "Delantero");
+            equipo[9] = new Jugador("Ismaïla", "Sarr", 4, 12, 18, "Delantero");
 
-            bool turno1 = true;
-            Salas[] listaSalas = new Salas[20];
-            for (int k = 0; k < listaSalas.Length; k++)
+            Jugador mejor = Ver_mejor_jugador(equipo);
+            double mejor_indice = Generarindiceataque(mejor.Cant_goles, mejor.Cant_disparos_arco);
+            Console.WriteLine($"El jugador con mayor indice de ataque es: {mejor.Nombre} {mejor.Apellido} Posicion: {mejor.Posicion} #{mejor.Numero_camiseta} Disparos al arco:{mejor.Cant_disparos_arco} Goles:{mejor.Cant_goles} Indice ataque: {mejor_indice:F2}");
+        }
+        static double Generarindiceataque(int Cant_goles, int Cant_disparos_arco)
+        {
+            if (Cant_disparos_arco == 0) { return 0; }
+            return ((double)Cant_goles / Cant_disparos_arco) * 100;
+        }
+
+        static Jugador Ver_mejor_jugador(Jugador[] equipo)
+        {
+            Jugador mejor_jugador = equipo[0];
+            double max_indice = Generarindiceataque(equipo[0].Cant_goles, equipo[0].Cant_disparos_arco);
+            for (int i = 1; i < equipo.Length; i++)
             {
-                string objeto = objetos[aleatorio.Next(0, objetos.Length)];
-                int poderitem = aleatorio.Next(10, 31);
-                listaSalas[k] = new Salas(aleatorio.Next(10, 80), objeto, poderitem);
+                double indice_Actual = Generarindiceataque(equipo[i].Cant_goles, equipo[i].Cant_disparos_arco);
+
+                if (indice_Actual > max_indice)
+                {
+                    max_indice = indice_Actual;
+                    mejor_jugador = equipo[i];
+                }
             }
 
-            for (int i = 0; i < listaSalas.Length; i++)
-            {
-                Console.WriteLine($"Turno : {i}");
-                Salas salaActual = listaSalas[i];
-                if (turno1 == true)
-                {
-                    if (salaActual.Dificultad < marcos.Poder)
-                    {
-                        Console.WriteLine("Logro robarlo ya que su poder es mayor al de la sala");
-                        marcos.Poder += salaActual.Poderitem;
-                        for (int j = 0; j < marcos.Items.Length; j++)
-                        {
-                            if (marcos.Items[j] == null)
-                            {
-                                marcos.Items[j] = salaActual.Item;
-                                Console.WriteLine($"[{salaActual.Item}] guardado en la mochila de {marcos.Nombre}.");
-                                break;
-                            }
-                        }
-                    }
-                    else { Console.WriteLine("No logro robarlo ya que su poder es menor al de la sala ;("); }
-                    turno1 = false;
-                }
-
-                else
-                {
-                    if (salaActual.Dificultad < pedro.Poder)
-                    {
-                        Console.WriteLine("Logro robarlo ya que su poder es mayor al de la sala");
-                        pedro.Poder += salaActual.Poderitem;
-                        for (int j = 0; j < pedro.Items.Length; j++)
-                        {
-                            if (marcos.Items[j] == null)
-                            {
-                                pedro.Items[j] = salaActual.Item;
-                                Console.WriteLine($"[{salaActual.Item}] guardado en la mochila de {pedro.Nombre}.");
-                                break;
-                            }
-                        }
-                    }
-                    else { Console.WriteLine("No logro robarlo ya que su poder es menor al de la sala ;("); }
-                    turno1 = true;
-                }
-            }
-            if (pedro.Poder < marcos.Poder)
-            {
-                Console.WriteLine($"Ha ganado Cabral - Inventario: ");
-                for (int j = 0; j < marcos.Items.Length; j++)
-                {
-                    if (marcos.Items[j] != null)
-                    {
-                        Console.WriteLine($"Items: [{marcos.Items[j]}]");
-                    }
-                }
-            }
-            else if (pedro.Poder > marcos.Poder)
-            {
-                Console.WriteLine($"Ha ganado Toledo - Inventario: ");
-                for (int j = 0; j < marcos.Items.Length; j++)
-                {
-                    if (pedro.Items[j] != null)
-                    {
-                        Console.WriteLine($"Items: [{pedro.Items[j]}]");
-                    }
-                }
-            }
-            else if (pedro.Poder == marcos.Poder)
-            {
-                Console.WriteLine("Han empatado");
-                Console.WriteLine("Inventario de Cabral");
-                for (int j = 0; j < marcos.Items.Length; j++)
-                {
-                    if (marcos.Items[j] != null)
-                    {
-                        Console.WriteLine($"Items: [{marcos.Items[j]}]");
-                    }
-                }
-                Console.WriteLine("Inventario de Toledo");
-                for (int j = 0; j < pedro.Items.Length; j++)
-                {
-                    if (pedro.Items[j] != null)
-                    {
-                        Console.WriteLine($"Items: [{pedro.Items[j]}]");
-                    }
-                }
-            }
+            return mejor_jugador;
         }
     }
 }
